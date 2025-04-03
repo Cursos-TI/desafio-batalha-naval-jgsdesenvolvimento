@@ -1,49 +1,42 @@
 #include <stdio.h>
 
+// Definindo as constantes
+#define tamanho_do_tabuleiro 10
+#define agua 0
+#define navio 3
+#define tamanho_do_navio 3
+
 int main() {
     
-    //Header
+    // Header
     printf("=====================================\n");
     printf("==========| BATALHA NAVAL |==========\n");
     printf("=====================================\n\n");
 
     //Construindo as colunas do jogo
-    char coluna [10] = {'A','B','C','D','E','F','G','H','I','J'};
+    char coluna[tamanho_do_tabuleiro] = {'A','B','C','D','E','F','G','H','I','J'};
     //Construindo as linhas do jogo 
-    int linhas [10] = {1,2,3,4,5,6,7,8,9,10};
+    int linhas[tamanho_do_tabuleiro] = {1,2,3,4,5,6,7,8,9,10};
     //Construindo o tabuleiro do jogo
-    int tabuleiro [10][10] = {0};
+    int tabuleiro[tamanho_do_tabuleiro][tamanho_do_tabuleiro] = {agua};
 
-    //posição do navio 1
-        for(int i = 6; i < 9; i++){
-        tabuleiro[i][3] = 3;
-    }
+   //posição dos navios
+    for(int i = 6; i < 6 + tamanho_do_navio; i++) tabuleiro[i][3] = navio; // Vertical
+    for(int i = 5; i < 5 + tamanho_do_navio; i++) tabuleiro[5][i] = navio; // Horizonta
 
-    //posição do navio 2
-        for(int i = 5; i < 8; i++){
-        tabuleiro [5][i] = 3;
-    }
+    //posição do navio na diagonal
+    tabuleiro[0][0] = tabuleiro[1][1] = tabuleiro[2][2] = navio;
 
-    // coluna da variavel I
-    printf("   ");//Alinha as colunas
-        for (int i = 0; i < 10; i++)
-    {
-        printf("%c  ", coluna[i]);
-    }
-        printf("\n");
+    printf("   ");
+    for(int i = 0; i < tamanho_do_tabuleiro; i++) printf("%c  ", coluna[i]);
+    printf("\n");
 
-    // linha da variavel J
-        for (int j = 0; j < 10; j++)
-    {
+    for(int j = 0; j < tamanho_do_tabuleiro; j++){
         printf("%2d", linhas[j]);
-        for (int i = 0; i < 10; i++)
-        {
-            printf(" %d ", tabuleiro[j][i]);
-        }
+        for(int i = 0; i < tamanho_do_tabuleiro; i++) printf(" %d ", tabuleiro[j][i]);
         printf("\n");
     }
-
-    //Footer
+    // Footer
     printf("\n=====================================\n");
     printf("==========| BATALHA NAVAL |==========\n");
     printf("=====================================\n");
